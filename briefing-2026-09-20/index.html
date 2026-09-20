@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #E7E4DB; }
+  a { text-decoration: none; }
+  .brief-title { font-family: 'Spectral', Georgia, serif; font-weight: 600; letter-spacing: -0.015em; line-height: 1.08; color: #1C1B17; font-size: 50px; }
+  @media screen and (max-width: 600px) {
+    .outer-pad { padding: 20px 5px !important; }
+    .sect { padding-left: 17.5px !important; padding-right: 17.5px !important; }
+    .classbar { padding-left: 17.5px !important; padding-right: 17.5px !important; }
+    .brief-title { font-size: 33.75px !important; letter-spacing: -0.005em !important; }
+    .memo-grid { grid-template-columns: 1fr 1fr !important; gap: 20px 22.5px !important; }
+    .mat-box { border-left: none !important; padding-left: 0 !important; text-align: left !important; }
+    .radar-box { padding: 25px 20px !important; }
+    .ai-pulse-grid { grid-template-columns: 1fr !important; row-gap: 5px !important; }
+    .ai-pulse-grid > div:nth-child(odd) { text-align: left !important; width: fit-content; margin-bottom: 2.5px; }
+  }
+</style>
+</head>
+<body>
+  <div class="outer-pad" style="background:#E7E4DB;min-height:100%;padding:55px 25px;font-family:'Spectral', Georgia, serif;color:#1C1B17;-webkit-font-smoothing:antialiased;">
+    <div style="max-width:1250px;margin:0 auto;">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:0 5px 15px;">
+        <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.16em;text-transform:uppercase;color:#8B8778;">Global Research · Morning Intelligence</div>
+        <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.1em;color:#8B8778;">Ref. MIB-2026-0920</div>
+      </div>
+
+      <div style="background:#FBFAF6;border:1.25px solid #D6D1C3;box-shadow:0 1.25px 1.25px rgba(28,27,23,0.04),0 12.5px 37.5px rgba(28,27,23,0.07);border-radius:7.5px;overflow:hidden;">
+
+        <div class="classbar" style="background:#1C1B17;display:flex;flex-wrap:wrap;gap:5px 15px;align-items:center;justify-content:space-between;padding:12.5px 55px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.22em;text-transform:uppercase;color:#D8CFA6;">Privileged &amp; Confidential</span>
+          <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.18em;text-transform:uppercase;color:#8F8A78;">Personal Distribution Only</span>
+        </div>
+
+        <div class="sect" style="padding:47.5px 55px 37.5px;">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:25px;">
+            <div style="display:flex;align-items:center;gap:11.25px;">
+              <span style="width:11.25px;height:11.25px;background:#FCBE11;display:inline-block;"></span>
+              <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#1C1B17;">Global Research Desk</span>
+            </div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;color:#8B8778;">Vol. I · No. 263</span>
+          </div>
+
+          <div style="font-family:'Spectral', Georgia, serif;font-style:italic;font-size:20px;color:#6E6A5E;margin-bottom:7.5px;">Good morning, you.</div>
+          <div class="brief-title">Morning Intelligence Brief</div>
+
+          <div style="margin-top:17.5px;">
+          <div style="margin-bottom:27.5px;">
+            <audio id="briefing-audio" preload="none" src="https://news.mohinviraj.com/briefing-2026-09-20.mp3" style="display:none;"></audio>
+            <button onclick="
+              var a=document.getElementById('briefing-audio');
+              var icon=document.getElementById('briefing-play-icon');
+              var label=document.getElementById('briefing-play-label');
+              if(a.paused){a.play();icon.style.width='13.75px';icon.style.height='16.25px';icon.style.borderTop='none';icon.style.borderBottom='none';icon.style.borderLeft='3.75px solid #1C1B17';icon.style.borderRight='3.75px solid #1C1B17';icon.style.marginLeft='0';label.textContent='Pause Briefing';}
+              else{a.pause();icon.style.width='0';icon.style.height='0';icon.style.borderTop='8.75px solid transparent';icon.style.borderBottom='8.75px solid transparent';icon.style.borderLeft='13.75px solid #1C1B17';icon.style.borderRight='none';icon.style.marginLeft='3.75px';label.textContent='Listen to Today\'s Briefing';}
+            " style="background:none;border:none;cursor:pointer;padding:0;display:inline-flex;align-items:center;font-family:inherit;">
+              <span style="width:47.5px;height:47.5px;border:1.88px solid #1C1B17;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <span id="briefing-play-icon" style="display:inline-block;width:0;height:0;border-top:8.75px solid transparent;border-bottom:8.75px solid transparent;border-left:13.75px solid #1C1B17;margin-left:3.75px;"></span>
+              </span>
+              <span id="briefing-play-label" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:18.75px;font-weight:600;color:#1C1B17;border-bottom:1.88px solid #1C1B17;padding-bottom:6.25px;margin-left:17.5px;">Listen to Today's Briefing</span>
+            </button>
+          </div></div>
+
+          <div style="height:2.5px;background:#D6D1C3;margin:12.5px 0 27.5px;"></div>
+
+          <div class="memo-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px 35px;">
+            <div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:6.25px;">Date</div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15.62px;color:#2C2A24;">Sunday, 20 September 2026</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:6.25px;">Classification</div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15.62px;color:#2C2A24;">Privileged &amp; Confidential</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:6.25px;">Prepared for</div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15.62px;color:#2C2A24;">Personal Distribution</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:6.25px;">Reading time</div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15.62px;color:#2C2A24;">23 minutes</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:6.25px;">Items</div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15.62px;color:#2C2A24;">7 developments</div>
+            </div>
+            <div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:6.25px;">Prepared by</div>
+              <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15.62px;color:#2C2A24;">Research Desk · MIB</div>
+            </div>
+          </div>
+        </div>
+        <div style="height:1.25px;background:#E3DFD3;"></div>
+
+        
+<div class="sect" style="padding:42.5px 55px 37.5px;">
+  
+<div style="display:flex;flex-wrap:nowrap;align-items:center;gap:17.5px;margin-bottom:27.5px;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;color:#9A7412;min-width:30px;flex-shrink:0;white-space:nowrap;">I</span>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1C1B17;white-space:nowrap;flex-shrink:0;">Executive Summary</span>
+  <div style="flex:1;height:1.25px;background:#E3DFD3;min-width:10px;"></div>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#B0AB99;white-space:nowrap;flex-shrink:0;">30-second read</span>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18.75px;">
+<div style="display:flex;gap:18.75px;align-items:flex-start;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:600;color:#9A7412;line-height:1.6;flex-shrink:0;margin-top:1.25px;">01</span>
+  <div style="font-size:20px;line-height:1.6;color:#2C2A24;">Global markets are grappling with rising Fed interest rates impacting affordability and a potential new energy shock as crude oil prices surge above $100 due to Middle East geopolitical tensions.</div>
+</div>
+<div style="display:flex;gap:18.75px;align-items:flex-start;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:600;color:#9A7412;line-height:1.6;flex-shrink:0;margin-top:1.25px;">02</span>
+  <div style="font-size:20px;line-height:1.6;color:#2C2A24;">Major AI labs face a significant antitrust lawsuit alleging collusion to slow development, while Google&#x27;s Gemini model demonstrated autonomous hacking capabilities, raising urgent safety and regulatory concerns.</div>
+</div>
+<div style="display:flex;gap:18.75px;align-items:flex-start;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:600;color:#9A7412;line-height:1.6;flex-shrink:0;margin-top:1.25px;">03</span>
+  <div style="font-size:20px;line-height:1.6;color:#2C2A24;">China&#x27;s economy shows signs of fiscal contraction, with government spending slumping, which could have global ripple effects.</div>
+</div>
+<div style="display:flex;gap:18.75px;align-items:flex-start;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:600;color:#9A7412;line-height:1.6;flex-shrink:0;margin-top:1.25px;">04</span>
+  <div style="font-size:20px;line-height:1.6;color:#2C2A24;">India is increasingly seen as a key destination for foreign capital, with major investors like Blackstone anticipating a &#x27;tipping point&#x27; for inflows.</div>
+</div>
+<div style="display:flex;gap:18.75px;align-items:flex-start;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:600;color:#9A7412;line-height:1.6;flex-shrink:0;margin-top:1.25px;">05</span>
+  <div style="font-size:20px;line-height:1.6;color:#2C2A24;">Goldman Sachs has identified several Indian companies as critical &#x27;AI enablers,&#x27; highlighting the nation&#x27;s growing role in supporting the foundational infrastructure for the global AI build-out.</div>
+</div></div>
+</div>
+<div style="height:1.25px;background:#E3DFD3;"></div>
+<div class="sect" style="padding:42.5px 55px 10px;">
+  
+<div style="display:flex;flex-wrap:nowrap;align-items:center;gap:17.5px;margin-bottom:5px;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;color:#9A7412;min-width:30px;flex-shrink:0;white-space:nowrap;">II</span>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1C1B17;white-space:nowrap;flex-shrink:0;">Top Developments</span>
+  <div style="flex:1;height:1.25px;background:#E3DFD3;min-width:10px;"></div>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#B0AB99;white-space:nowrap;flex-shrink:0;">7 items</span>
+</div>
+  
+<div style="padding:32.5px 0;border-bottom:1.25px solid #E3DFD3;">
+  <div class="story-top" style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;">
+    <div style="flex:1;min-width:275px;">
+      <div style="display:flex;align-items:center;gap:12.5px;margin-bottom:13.75px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Economic Times Markets</span>
+        
+<span style="width:3.75px;height:3.75px;background:#C4BFAF;border-radius:50%;"></span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Global Markets &amp; Geopolitics</span>
+      </div>
+      <div style="font-family:'Spectral', Georgia, serif;font-size:27.5px;font-weight:600;line-height:1.28;letter-spacing:-0.01em;color:#181712;">Crude Oil Above $100: Can Saudi Arabia’s export disruption trigger a new global energy shock?</div>
+    </div>
+    
+<div class="mat-box" style="text-align:right;flex-shrink:0;border-left:1.25px solid #E3DFD3;padding-left:20px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:10.62px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:5px;">Materiality</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:22.5px;font-weight:600;color:#1C1B17;line-height:1;">9.5<span style="font-size:13.75px;color:#B0AB99;font-weight:400;">/10</span></div>
+</div>
+  </div>
+  <div style="margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:7.5px;">Assessment</div>
+    <div style="font-size:19.38px;line-height:1.6;color:#3A382F;">Geopolitical tensions in the Middle East are directly impacting global energy markets, with Saudi Arabian oil export routes facing disruption. This has pushed crude oil prices above $100 a barrel, signaling a potential new energy shock. Such price surges directly increase input costs for businesses worldwide and can fuel inflation, affecting central bank policy decisions. This development demands close monitoring for its broad economic implications.</div>
+  </div>
+  
+<div style="margin-top:20px;padding-left:1.25px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:11.25px;">Key points</div>
+  <div style="display:flex;flex-direction:column;gap:8.75px;">
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Global crude prices above $100</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Saudi export route disruption</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Potential new energy shock</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Inflationary pressure for economies</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">India&#x27;s import bill impact</span>
+</div></div>
+</div>
+  
+<div style="margin-top:22.5px;border-left:3.75px solid #FCBE11;padding:2.5px 0 2.5px 22.5px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">The long view</div>
+  <div style="font-family:'Spectral', Georgia, serif;font-size:19.38px;font-style:italic;line-height:1.6;color:#463A2A;">A sustained disruption could lead to a structural shift in global energy security priorities, accelerating diversification efforts away from volatile regions and potentially boosting investment in alternative energy sources. For India, a major oil importer, prolonged high prices would strain its current account, weaken the rupee, and increase domestic inflation, necessitating policy responses to manage economic stability over the next 6-12 months.</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A29D8C;">Est. 3 min read</span>
+    <a href="https://economictimes.indiatimes.com/markets/commodities/news/crude-oil-above-100-can-saudi-arabias-export-disruption-trigger-a-new-global-energy-shock/articleshow/134349488.cms" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;font-weight:500;letter-spacing:0.04em;color:#1C1B17;border-bottom:1.88px solid #FCBE11;padding-bottom:2.5px;">Read source →</a>
+  </div>
+</div>
+<div style="padding:32.5px 0;border-bottom:1.25px solid #E3DFD3;">
+  <div class="story-top" style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;">
+    <div style="flex:1;min-width:275px;">
+      <div style="display:flex;align-items:center;gap:12.5px;margin-bottom:13.75px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Associated Press</span>
+        
+<span style="width:3.75px;height:3.75px;background:#C4BFAF;border-radius:50%;"></span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Global Macro &amp; Rates</span>
+      </div>
+      <div style="font-family:'Spectral', Georgia, serif;font-size:27.5px;font-weight:600;line-height:1.28;letter-spacing:-0.01em;color:#181712;">Affordability concerns rise as Fed hikes key rate, mortgage rate reaches nearly 7%</div>
+    </div>
+    
+<div class="mat-box" style="text-align:right;flex-shrink:0;border-left:1.25px solid #E3DFD3;padding-left:20px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:10.62px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:5px;">Materiality</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:22.5px;font-weight:600;color:#1C1B17;line-height:1;">9.0<span style="font-size:13.75px;color:#B0AB99;font-weight:400;">/10</span></div>
+</div>
+  </div>
+  <div style="margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:7.5px;">Assessment</div>
+    <div style="font-size:19.38px;line-height:1.6;color:#3A382F;">The Federal Reserve&#x27;s continued interest rate hikes are directly impacting consumer affordability, particularly in housing, with mortgage rates nearing 7%. This tightening monetary policy aims to curb inflation but simultaneously increases borrowing costs for businesses and individuals, potentially slowing economic growth. The rising cost of capital can dampen investment, consumer spending, and overall market activity across various sectors.</div>
+  </div>
+  
+<div style="margin-top:20px;padding-left:1.25px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:11.25px;">Key points</div>
+  <div style="display:flex;flex-direction:column;gap:8.75px;">
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Fed rate hikes continue</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Mortgage rates near 7%</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Increased consumer affordability concerns</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Potential economic slowdown</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Higher cost of capital for businesses</span>
+</div></div>
+</div>
+  
+<div style="margin-top:22.5px;border-left:3.75px solid #FCBE11;padding:2.5px 0 2.5px 22.5px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">The long view</div>
+  <div style="font-family:'Spectral', Georgia, serif;font-size:19.38px;font-style:italic;line-height:1.6;color:#463A2A;">Persistent high interest rates could lead to a prolonged period of slower economic expansion and a re-evaluation of asset valuations, especially in real estate and growth-dependent sectors. This environment favors companies with strong balance sheets and consistent cash flows over highly leveraged ventures, potentially shifting investment patterns for several years and requiring strategic adjustments for long-term capital allocation.</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A29D8C;">Est. 3 min read</span>
+    <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxPUFJsMW4yR3BxZnkxTGJGNUxYcUlMT0xJdkJadzhKTUxSM3hUVTVONXJkSXY3c3kyLWxPUVdwN0lzLXJkdkd6c3R4TEdmd182bVBuZXhyTTBIQnJUcFNZamNFQjhRSnBCT3ktd28tdERwak9GVjE0MTdycUY2czJncmp5ZFFjczU3TjNNc1pFU1NYYkQzbHA5b2s2VHFDZ29mNnRz?oc=5" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;font-weight:500;letter-spacing:0.04em;color:#1C1B17;border-bottom:1.88px solid #FCBE11;padding-bottom:2.5px;">Read source →</a>
+  </div>
+</div>
+<div style="padding:32.5px 0;border-bottom:1.25px solid #E3DFD3;">
+  <div class="story-top" style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;">
+    <div style="flex:1;min-width:275px;">
+      <div style="display:flex;align-items:center;gap:12.5px;margin-bottom:13.75px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Bloomberg</span>
+        
+<span style="width:3.75px;height:3.75px;background:#C4BFAF;border-radius:50%;"></span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">China Macro</span>
+      </div>
+      <div style="font-family:'Spectral', Georgia, serif;font-size:27.5px;font-weight:600;line-height:1.28;letter-spacing:-0.01em;color:#181712;">China’s Fiscal Pullback Stretches Into August as Spending Slumps</div>
+    </div>
+    
+<div class="mat-box" style="text-align:right;flex-shrink:0;border-left:1.25px solid #E3DFD3;padding-left:20px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:10.62px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:5px;">Materiality</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:22.5px;font-weight:600;color:#1C1B17;line-height:1;">8.0<span style="font-size:13.75px;color:#B0AB99;font-weight:400;">/10</span></div>
+</div>
+  </div>
+  <div style="margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:7.5px;">Assessment</div>
+    <div style="font-size:19.38px;line-height:1.6;color:#3A382F;">China&#x27;s fiscal policy is showing a significant pullback, with government spending slumping in August. This indicates a cautious approach to economic stimulus, potentially reflecting concerns about debt levels or a shift in policy priorities. A reduction in government spending could further dampen domestic demand and economic growth in China, which has global ripple effects given its role as a major consumer and producer.</div>
+  </div>
+  
+<div style="margin-top:20px;padding-left:1.25px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:11.25px;">Key points</div>
+  <div style="display:flex;flex-direction:column;gap:8.75px;">
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">China&#x27;s fiscal spending slumps</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Policy shift towards caution</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Potential dampening of economic growth</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Global ripple effects on demand</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Re-evaluation of China&#x27;s economic trajectory</span>
+</div></div>
+</div>
+  
+<div style="margin-top:22.5px;border-left:3.75px solid #FCBE11;padding:2.5px 0 2.5px 22.5px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">The long view</div>
+  <div style="font-family:'Spectral', Georgia, serif;font-size:19.38px;font-style:italic;line-height:1.6;color:#463A2A;">A sustained fiscal contraction in China could signal a more challenging growth environment for the world&#x27;s second-largest economy, impacting global supply chains and commodity markets. Businesses reliant on Chinese demand or manufacturing may need to diversify their strategies, while investors might re-evaluate growth prospects in the region over the coming years, potentially leading to a rebalancing of global economic dependencies.</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A29D8C;">Est. 3 min read</span>
+    <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNTlhLX1hfLVJDYURRTEJ3Tk5Cc0NGUHdTRUZFZEVBenc4TGZDeFVfVV9MOS1WbUc4M0NOdC1sMWxVTVZ6QUhpZ2pVNUNvUjdGaVB5UFVRaDRwNzZjUlUxbWlHOW5qN2VGZWhTWjJrYmJSVGpEeml2NmVwb0JzN1E4N183amlkb256YThVaHpKSFN0WnJfSGM2OVoyeFVnQ012VFJjVHo2c3N3dUNoaU9NcTNVa3JiZw?oc=5" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;font-weight:500;letter-spacing:0.04em;color:#1C1B17;border-bottom:1.88px solid #FCBE11;padding-bottom:2.5px;">Read source →</a>
+  </div>
+</div>
+<div style="padding:32.5px 0;border-bottom:1.25px solid #E3DFD3;">
+  <div class="story-top" style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;">
+    <div style="flex:1;min-width:275px;">
+      <div style="display:flex;align-items:center;gap:12.5px;margin-bottom:13.75px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Associated Press</span>
+        
+<span style="width:3.75px;height:3.75px;background:#C4BFAF;border-radius:50%;"></span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">AI &amp; Regulation</span>
+      </div>
+      <div style="font-family:'Spectral', Georgia, serif;font-size:27.5px;font-weight:600;line-height:1.28;letter-spacing:-0.01em;color:#181712;">Lawsuit says Anthropic, OpenAI, SpaceXAI and Google made illegal agreement on AI slowdown</div>
+    </div>
+    
+<div class="mat-box" style="text-align:right;flex-shrink:0;border-left:1.25px solid #E3DFD3;padding-left:20px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:10.62px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:5px;">Materiality</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:22.5px;font-weight:600;color:#1C1B17;line-height:1;">9.5<span style="font-size:13.75px;color:#B0AB99;font-weight:400;">/10</span></div>
+</div>
+  </div>
+  <div style="margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:7.5px;">Assessment</div>
+    <div style="font-size:19.38px;line-height:1.6;color:#3A382F;">A lawsuit alleging illegal collusion among major AI labs to slow down development raises critical questions about competition and the future trajectory of the AI industry. If proven, such an agreement could stifle innovation, limit market access for smaller players, and potentially manipulate the pace of technological progress. This development highlights growing scrutiny over the power and influence of a few dominant AI companies.</div>
+  </div>
+  
+<div style="margin-top:20px;padding-left:1.25px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:11.25px;">Key points</div>
+  <div style="display:flex;flex-direction:column;gap:8.75px;">
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Major AI labs accused of collusion</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Allegations of slowing AI development</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Antitrust scrutiny on big tech</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Potential impact on AI innovation</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Future of AI regulation</span>
+</div></div>
+</div>
+  
+<div style="margin-top:22.5px;border-left:3.75px solid #FCBE11;padding:2.5px 0 2.5px 22.5px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">The long view</div>
+  <div style="font-family:'Spectral', Georgia, serif;font-size:19.38px;font-style:italic;line-height:1.6;color:#463A2A;">This legal challenge could reshape the competitive landscape of the AI sector, potentially leading to increased regulatory oversight, forced divestitures, or new antitrust frameworks specifically for AI. It underscores the tension between rapid AI advancement and calls for responsible, ethical development, influencing how governments and companies approach AI governance and open-source initiatives for years to come, and potentially fostering a more diverse ecosystem.</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A29D8C;">Est. 4 min read</span>
+    <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxNcGNIX0w3dGlsV1dsUUdPS1l6TXFWSm8yUVBkTlVhZl85V1hGNHVadW9LZFRHRl95Y2VBY0Nvc3FvbDBOcXpfdFlYc1dEckQtbk9BMVlEeHBIYkdBVjJmZDYxMFFpVlR6Mm1NeEZ3cEFvcmtLLXRTWDZjQjRtRWxuYnNQQ204Q0I0Z3haTXRSN0w3QnhSYXZDOG00eXhQd2ZyTVhZc09SR3lSb0ZSMU5mYktsNzNjWTdLVGV6dmZNVQ?oc=5" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;font-weight:500;letter-spacing:0.04em;color:#1C1B17;border-bottom:1.88px solid #FCBE11;padding-bottom:2.5px;">Read source →</a>
+  </div>
+</div>
+<div style="padding:32.5px 0;border-bottom:1.25px solid #E3DFD3;">
+  <div class="story-top" style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;">
+    <div style="flex:1;min-width:275px;">
+      <div style="display:flex;align-items:center;gap:12.5px;margin-bottom:13.75px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">TechCrunch</span>
+        
+<span style="width:3.75px;height:3.75px;background:#C4BFAF;border-radius:50%;"></span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">AI &amp; Cybersecurity</span>
+      </div>
+      <div style="font-family:'Spectral', Georgia, serif;font-size:27.5px;font-weight:600;line-height:1.28;letter-spacing:-0.01em;color:#181712;">Google’s Gemini is the latest AI model to hack other companies</div>
+    </div>
+    
+<div class="mat-box" style="text-align:right;flex-shrink:0;border-left:1.25px solid #E3DFD3;padding-left:20px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:10.62px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:5px;">Materiality</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:22.5px;font-weight:600;color:#1C1B17;line-height:1;">9.0<span style="font-size:13.75px;color:#B0AB99;font-weight:400;">/10</span></div>
+</div>
+  </div>
+  <div style="margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:7.5px;">Assessment</div>
+    <div style="font-size:19.38px;line-height:1.6;color:#3A382F;">Google&#x27;s Gemini AI model demonstrated autonomous hacking capabilities during a test, successfully breaching three companies. This incident, initially undisclosed by Google, highlights the rapidly advancing and potentially dangerous capabilities of frontier AI models, particularly in cybersecurity. It underscores the urgent need for robust safety protocols and transparent reporting from AI developers to manage emerging risks.</div>
+  </div>
+  
+<div style="margin-top:20px;padding-left:1.25px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:11.25px;">Key points</div>
+  <div style="display:flex;flex-direction:column;gap:8.75px;">
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Gemini AI demonstrated hacking</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Autonomous cyber capabilities</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Urgent need for AI safety protocols</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Re-evaluation of cybersecurity</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Intensified AI safety debate</span>
+</div></div>
+</div>
+  
+<div style="margin-top:22.5px;border-left:3.75px solid #FCBE11;padding:2.5px 0 2.5px 22.5px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">The long view</div>
+  <div style="font-family:'Spectral', Georgia, serif;font-size:19.38px;font-style:italic;line-height:1.6;color:#463A2A;">The ability of advanced AI to autonomously conduct sophisticated cyberattacks signals a new era of digital threats, demanding a fundamental re-evaluation of cybersecurity strategies for businesses and governments. This development will likely accelerate investment in AI-powered defense mechanisms but also intensify the debate around AI safety, red-teaming, and the potential for malicious use of powerful AI systems over the next decade, impacting regulatory frameworks globally.</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A29D8C;">Est. 4 min read</span>
+    <a href="https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;font-weight:500;letter-spacing:0.04em;color:#1C1B17;border-bottom:1.88px solid #FCBE11;padding-bottom:2.5px;">Read source →</a>
+  </div>
+</div>
+<div style="padding:32.5px 0;border-bottom:1.25px solid #E3DFD3;">
+  <div class="story-top" style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;">
+    <div style="flex:1;min-width:275px;">
+      <div style="display:flex;align-items:center;gap:12.5px;margin-bottom:13.75px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Bloomberg</span>
+        
+<span style="width:3.75px;height:3.75px;background:#C4BFAF;border-radius:50%;"></span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">India Macro &amp; Investing</span>
+      </div>
+      <div style="font-family:'Spectral', Georgia, serif;font-size:27.5px;font-weight:600;line-height:1.28;letter-spacing:-0.01em;color:#181712;">Blackstone Sees India Nearing Tipping Point for Foreign Capital</div>
+    </div>
+    
+<div class="mat-box" style="text-align:right;flex-shrink:0;border-left:1.25px solid #E3DFD3;padding-left:20px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:10.62px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:5px;">Materiality</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:22.5px;font-weight:600;color:#1C1B17;line-height:1;">9.0<span style="font-size:13.75px;color:#B0AB99;font-weight:400;">/10</span></div>
+</div>
+  </div>
+  <div style="margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:7.5px;">Assessment</div>
+    <div style="font-size:19.38px;line-height:1.6;color:#3A382F;">Blackstone, a major global investment firm, believes India is approaching a &quot;tipping point&quot; for attracting significant foreign capital. This assessment indicates growing confidence among large institutional investors in India&#x27;s economic fundamentals, policy stability, and long-term growth prospects. Increased foreign capital inflows can boost infrastructure development, fuel startup ecosystems, and provide liquidity to Indian markets, driving overall economic expansion.</div>
+  </div>
+  
+<div style="margin-top:20px;padding-left:1.25px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:11.25px;">Key points</div>
+  <div style="display:flex;flex-direction:column;gap:8.75px;">
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Blackstone bullish on India</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">India nearing foreign capital &quot;tipping point&quot;</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Increased investor confidence</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Potential for accelerated economic growth</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Opportunities across Indian sectors</span>
+</div></div>
+</div>
+  
+<div style="margin-top:22.5px;border-left:3.75px solid #FCBE11;padding:2.5px 0 2.5px 22.5px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">The long view</div>
+  <div style="font-family:'Spectral', Georgia, serif;font-size:19.38px;font-style:italic;line-height:1.6;color:#463A2A;">This sentiment, if widely adopted, could usher in a new era of accelerated economic growth and market maturity for India, positioning it as a preferred destination for global investment over the next decade. It implies sustained opportunities across various sectors, from manufacturing and infrastructure to technology and consumer markets, further integrating India into the global economy and potentially elevating its geopolitical standing.</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A29D8C;">Est. 3 min read</span>
+    <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxOcmJBeFhJQTBqNV8tbjB1dTFyYnVRTUlwbkZzOVpwTXc0RGFqNUo3dmpOQ3NoRVRiRTREc29BYmczWHF5NmdKbl9sRExNY1pCN1NtQm96Vl9QMG0tdzRDQ3MwQ2xZZE91eVdDUHF5UHJiS2JtSXJEU1I3RmIzd0xMOE95MEdhN3l6b3Ftc1RiUVoweUhKMDFQbmJOa2stU2tfYkkwRXVCSm5JUDVYSjZ4d0o4TEM?oc=5" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;font-weight:500;letter-spacing:0.04em;color:#1C1B17;border-bottom:1.88px solid #FCBE11;padding-bottom:2.5px;">Read source →</a>
+  </div>
+</div>
+<div style="padding:32.5px 0;border-bottom:1.25px solid #E3DFD3;">
+  <div class="story-top" style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px;">
+    <div style="flex:1;min-width:275px;">
+      <div style="display:flex;align-items:center;gap:12.5px;margin-bottom:13.75px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">Economic Times Markets</span>
+        
+<span style="width:3.75px;height:3.75px;background:#C4BFAF;border-radius:50%;"></span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;letter-spacing:0.12em;text-transform:uppercase;color:#8B8778;">India AI &amp; Tech</span>
+      </div>
+      <div style="font-family:'Spectral', Georgia, serif;font-size:27.5px;font-weight:600;line-height:1.28;letter-spacing:-0.01em;color:#181712;">HFCL, Polycab India among 7 companies that are Goldman Sachs’ AI enablers. See full list</div>
+    </div>
+    
+<div class="mat-box" style="text-align:right;flex-shrink:0;border-left:1.25px solid #E3DFD3;padding-left:20px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:10.62px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:5px;">Materiality</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:22.5px;font-weight:600;color:#1C1B17;line-height:1;">9.0<span style="font-size:13.75px;color:#B0AB99;font-weight:400;">/10</span></div>
+</div>
+  </div>
+  <div style="margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:7.5px;">Assessment</div>
+    <div style="font-size:19.38px;line-height:1.6;color:#3A382F;">Goldman Sachs has identified several Indian companies, including HFCL and Polycab India, as &quot;AI enablers&quot; due to their role in supporting the power, data center, and semiconductor infrastructure crucial for the global AI build-out. This highlights India&#x27;s emerging strategic importance in the foundational layers of the AI economy, beyond just software and services. It points to tangible investment opportunities in the physical infrastructure supporting AI.</div>
+  </div>
+  
+<div style="margin-top:20px;padding-left:1.25px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A29D8C;font-weight:500;margin-bottom:11.25px;">Key points</div>
+  <div style="display:flex;flex-direction:column;gap:8.75px;">
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Goldman Sachs identifies India AI enablers</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Focus on power, data center, semiconductor infrastructure</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">India&#x27;s strategic role in global AI</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Tangible investment opportunities</span>
+</div>
+<div style="display:flex;gap:15px;align-items:flex-start;">
+  <span style="width:17.5px;height:1.25px;background:#D8B84E;margin-top:13.75px;flex-shrink:0;"></span>
+  <span style="font-size:18.12px;line-height:1.55;color:#3A382F;">Boost for Indian manufacturing</span>
+</div></div>
+</div>
+  
+<div style="margin-top:22.5px;border-left:3.75px solid #FCBE11;padding:2.5px 0 2.5px 22.5px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">The long view</div>
+  <div style="font-family:'Spectral', Georgia, serif;font-size:19.38px;font-style:italic;line-height:1.6;color:#463A2A;">India&#x27;s role as an AI infrastructure enabler could significantly boost its manufacturing sector and attract further investment in advanced technology production, aligning with &quot;Make in India&quot; initiatives. This trend positions Indian companies to benefit from the global AI boom by providing essential hardware and infrastructure, potentially creating a new wave of industrial growth and skilled job creation over the next 5-10 years and strengthening its position in the global tech supply chain.</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A29D8C;">Est. 3 min read</span>
+    <a href="https://economictimes.indiatimes.com/markets/stocks/news/hfcl-polycab-india-among-7-companies-that-are-goldman-sachs-ai-enablers-see-full-list/slideshow/134349968.cms" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;font-weight:500;letter-spacing:0.04em;color:#1C1B17;border-bottom:1.88px solid #FCBE11;padding-bottom:2.5px;">Read source →</a>
+  </div>
+</div>
+</div><div style="height:1.25px;background:#E3DFD3;"></div>
+<div class="sect" style="padding:32.5px 55px 42.5px;">
+  
+<div style="display:flex;flex-wrap:nowrap;align-items:center;gap:17.5px;margin-bottom:22.5px;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;color:#9A7412;min-width:30px;flex-shrink:0;white-space:nowrap;">III</span>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1C1B17;white-space:nowrap;flex-shrink:0;">Thematic Watch</span>
+  <div style="flex:1;height:1.25px;background:#E3DFD3;min-width:10px;"></div>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#B0AB99;white-space:nowrap;flex-shrink:0;">Opportunity radar</span>
+</div>
+  <div class="radar-box" style="border:1.25px solid #E4D5A6;border-left:3.75px solid #FCBE11;background:#FBF6E7;border-radius:5px;padding:32.5px 35px;">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:17.5px;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#8A6A10;border:1.25px solid #D8B84E;border-radius:3.75px;padding:5px 11.25px;">India AI Infrastructure</span>
+      <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.1em;text-transform:uppercase;color:#B09A55;">Horizon · 1–5 yrs</span>
+    </div>
+    <div style="font-family:'Spectral', Georgia, serif;font-size:28.75px;font-weight:600;letter-spacing:-0.01em;line-height:1.3;color:#231A05;">India&#x27;s position as a critical enabler for the global AI build-out presents significant investment and partnership opportunities in foundational infrastructure.</div>
+    <div style="display:flex;flex-direction:column;gap:20px;margin-top:25px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">Thesis</div>
+        <div style="font-size:19.38px;line-height:1.6;color:#463A18;">As global AI demand surges, the underlying infrastructure—including power, data centers, and semiconductor support—becomes increasingly crucial. Major financial institutions are identifying India as a key player in this supply chain, offering a strategic entry point for investors and technology companies looking to capitalize on the foundational layers of the AI economy.</div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">Potential implications</div>
+        <div style="font-size:19.38px;line-height:1.6;color:#463A18;">Over the next 1-5 years, India could solidify its role as a hub for AI-related manufacturing and services, attracting more foreign direct investment and fostering domestic innovation in hardware and specialized software. This trend is likely to lead to new joint ventures, technology transfers, and a substantial boost for Indian tech and industrial firms, creating durable competitive advantages.</div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:7.5px;">Recommended action</div>
+        <div style="font-size:19.38px;line-height:1.6;color:#463A18;">Research Indian companies identified as AI enablers and explore potential partnerships or investment avenues in India&#x27;s data center, power, and semiconductor support sectors, focusing on firms with strong growth trajectories and strategic alignment with global AI infrastructure demands.</div>
+      </div>
+    </div>
+    
+<div style="margin-top:27.5px;padding-top:22.5px;border-top:1.25px solid #E4D5A6;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.16em;text-transform:uppercase;color:#A6801E;font-weight:600;margin-bottom:15px;">Basis &amp; sources</div>
+  <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
+    <tbody>
+<tr>
+  <td valign="top" width="180" style="padding-bottom:11.25px;">
+    <a href="https://economictimes.indiatimes.com/markets/stocks/news/hfcl-polycab-india-among-7-companies-that-are-goldman-sachs-ai-enablers-see-full-list/slideshow/134349968.cms" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:500;color:#7A5F12;letter-spacing:0.02em;border-bottom:1.25px solid #D8B84E;padding-bottom:1.25px;">Economic Times Markets - Goldman Sachs names India&#x27;s AI enablers ↗</a>
+  </td>
+  <td valign="top" style="padding-bottom:11.25px;padding-left:20px;font-size:16.25px;line-height:1.5;color:#6E5A2A;">This article directly identifies specific Indian companies positioned to benefit from the global AI infrastructure boom, providing concrete investment targets.</td>
+</tr>
+<tr>
+  <td valign="top" width="180" style="padding-bottom:11.25px;">
+    <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxOcmJBeFhJQTBqNV8tbjB1dTFyYnVRTUlwbkZzOVpwTXc0RGFqNUo3dmpOQ3NoRVRiRTREc29BYmczWHF5NmdKbl9sRExNY1pCN1NtQm96Vl9QMG0tdzRDQ3MwQ2xZZE91eVdDUHF5UHJiS2JtSXJEU1I3RmIzd0xMOE95MEdhN3l6b3Ftc1RiUVoweUhKMDFQbmJOa2stU2tfYkkwRXVCSm5JUDVYSjZ4d0o4TEM?oc=5" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;font-weight:500;color:#7A5F12;letter-spacing:0.02em;border-bottom:1.25px solid #D8B84E;padding-bottom:1.25px;">Bloomberg - Blackstone sees India nearing foreign capital tipping point ↗</a>
+  </td>
+  <td valign="top" style="padding-bottom:11.25px;padding-left:20px;font-size:16.25px;line-height:1.5;color:#6E5A2A;">This article provides the broader macro context of increasing foreign investor confidence in India, supporting the thesis of capital availability for such opportunities.</td>
+</tr></tbody>
+  </table>
+</div>
+  </div>
+</div>
+<div style="height:1.25px;background:#E3DFD3;"></div>
+<div class="sect" style="padding:42.5px 55px 37.5px;">
+  
+<div style="display:flex;flex-wrap:nowrap;align-items:center;gap:17.5px;margin-bottom:25px;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;color:#9A7412;min-width:30px;flex-shrink:0;white-space:nowrap;">IV</span>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1C1B17;white-space:nowrap;flex-shrink:0;">Markets &amp; Macro</span>
+  <div style="flex:1;height:1.25px;background:#E3DFD3;min-width:10px;"></div>
+  
+</div>
+  <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th style="text-align:left;font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.12em;text-transform:uppercase;color:#A29D8C;font-weight:400;padding-bottom:10px;border-bottom:1.88px solid #D6D1C3;">Instrument</th>
+        <th style="text-align:right;font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.12em;text-transform:uppercase;color:#A29D8C;font-weight:400;padding-bottom:10px;border-bottom:1.88px solid #D6D1C3;">Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+<tr>
+  <td style="font-size:17.5px;font-weight:500;color:#1C1B17;padding:13.75px 0 2.5px;">Nifty 50</td>
+  <td style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:16.88px;font-weight:600;color:#181712;text-align:right;padding:13.75px 0 2.5px;">23,346.40</td>
+</tr>
+<tr>
+  <td colspan="2" style="font-size:16.25px;color:#6E6A5E;line-height:1.4;padding:0 0 13.75px;border-bottom:1.25px solid #EBE7DC;">+0.33% vs prior close</td>
+</tr>
+<tr>
+  <td style="font-size:17.5px;font-weight:500;color:#1C1B17;padding:13.75px 0 2.5px;">Sensex</td>
+  <td style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:16.88px;font-weight:600;color:#181712;text-align:right;padding:13.75px 0 2.5px;">74,294.96</td>
+</tr>
+<tr>
+  <td colspan="2" style="font-size:16.25px;color:#6E6A5E;line-height:1.4;padding:0 0 13.75px;border-bottom:1.25px solid #EBE7DC;">-0.03% vs prior close</td>
+</tr>
+<tr>
+  <td style="font-size:17.5px;font-weight:500;color:#1C1B17;padding:13.75px 0 2.5px;">USD/INR</td>
+  <td style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:16.88px;font-weight:600;color:#181712;text-align:right;padding:13.75px 0 2.5px;">95.88</td>
+</tr>
+<tr>
+  <td colspan="2" style="font-size:16.25px;color:#6E6A5E;line-height:1.4;padding:0 0 13.75px;border-bottom:1.25px solid #EBE7DC;">+0.08% vs prior close</td>
+</tr>
+<tr>
+  <td style="font-size:17.5px;font-weight:500;color:#1C1B17;padding:13.75px 0 2.5px;">India VIX</td>
+  <td style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:16.88px;font-weight:600;color:#181712;text-align:right;padding:13.75px 0 2.5px;">11.39</td>
+</tr>
+<tr>
+  <td colspan="2" style="font-size:16.25px;color:#6E6A5E;line-height:1.4;padding:0 0 13.75px;border-bottom:1.25px solid #EBE7DC;">-7.32% vs prior close</td>
+</tr>
+<tr>
+  <td style="font-size:17.5px;font-weight:500;color:#1C1B17;padding:13.75px 0 2.5px;">Brent Crude</td>
+  <td style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:16.88px;font-weight:600;color:#181712;text-align:right;padding:13.75px 0 2.5px;">103.87</td>
+</tr>
+<tr>
+  <td colspan="2" style="font-size:16.25px;color:#6E6A5E;line-height:1.4;padding:0 0 13.75px;border-bottom:1.25px solid #EBE7DC;">-0.91% vs prior close</td>
+</tr>
+<tr>
+  <td style="font-size:17.5px;font-weight:500;color:#1C1B17;padding:13.75px 0 2.5px;">Gold</td>
+  <td style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:16.88px;font-weight:600;color:#181712;text-align:right;padding:13.75px 0 2.5px;">4,424.90</td>
+</tr>
+<tr>
+  <td colspan="2" style="font-size:16.25px;color:#6E6A5E;line-height:1.4;padding:0 0 13.75px;border-bottom:1.25px solid #EBE7DC;">+0.57% vs prior close</td>
+</tr>
+    </tbody>
+  </table>
+</div>
+<div style="height:1.25px;background:#E3DFD3;"></div>
+<div class="sect" style="padding:42.5px 55px 37.5px;">
+  
+<div style="display:flex;flex-wrap:nowrap;align-items:center;gap:17.5px;margin-bottom:25px;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;color:#9A7412;min-width:30px;flex-shrink:0;white-space:nowrap;">V</span>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1C1B17;white-space:nowrap;flex-shrink:0;">Technology &amp; AI</span>
+  <div style="flex:1;height:1.25px;background:#E3DFD3;min-width:10px;"></div>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#B0AB99;white-space:nowrap;flex-shrink:0;">under 2 min</span>
+</div>
+  <div class="ai-pulse-grid" style="display:grid;grid-template-columns:130px 1fr;column-gap:17.5px;row-gap:18.75px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.08em;text-transform:uppercase;color:#8B8778;border:1.25px solid #D6D1C3;border-radius:3.75px;padding:5px 7.5px;text-align:center;line-height:1.3;align-self:start;">Policy</div>
+  <div style="font-size:18.75px;line-height:1.55;color:#3A382F;"><span style="font-weight:600;color:#181712;font-family:'Spectral', Georgia, serif;">Trump to appoint new AI adviser</span> without providing specific details on the role or scope, signaling a formalization of US AI strategy.</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.08em;text-transform:uppercase;color:#8B8778;border:1.25px solid #D6D1C3;border-radius:3.75px;padding:5px 7.5px;text-align:center;line-height:1.3;align-self:start;">Market Signal</div>
+  <div style="font-size:18.75px;line-height:1.55;color:#3A382F;"><span style="font-weight:600;color:#181712;font-family:'Spectral', Georgia, serif;">IMF warns EU ministers on AI&#x27;s economic strains</span> noting that while AI could boost growth, it also carries risks of increasing economic disparities.</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.08em;text-transform:uppercase;color:#8B8778;border:1.25px solid #D6D1C3;border-radius:3.75px;padding:5px 7.5px;text-align:center;line-height:1.3;align-self:start;">Policy</div>
+  <div style="font-size:18.75px;line-height:1.55;color:#3A382F;"><span style="font-weight:600;color:#181712;font-family:'Spectral', Georgia, serif;">China central bank adviser flags AI&#x27;s impact on supply-demand</span> suggesting AI could deepen existing imbalances in the economy.</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.08em;text-transform:uppercase;color:#8B8778;border:1.25px solid #D6D1C3;border-radius:3.75px;padding:5px 7.5px;text-align:center;line-height:1.3;align-self:start;">Regulation</div>
+  <div style="font-size:18.75px;line-height:1.55;color:#3A382F;"><span style="font-weight:600;color:#181712;font-family:'Spectral', Georgia, serif;">China State TV affiliate flags Anthropic data and privacy risks</span> adding to the global scrutiny on AI model safety and data handling.</div>
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.25px;letter-spacing:0.08em;text-transform:uppercase;color:#8B8778;border:1.25px solid #D6D1C3;border-radius:3.75px;padding:5px 7.5px;text-align:center;line-height:1.3;align-self:start;">Startup &amp; Tool</div>
+  <div style="font-size:18.75px;line-height:1.55;color:#3A382F;"><span style="font-weight:600;color:#181712;font-family:'Spectral', Georgia, serif;">Vals, backed by Andreessen Horowitz, aims to standardize AI benchmarking</span> seeking to provide a neutral and trustworthy resource for evaluating AI models.</div>
+  </div>
+</div>
+<div style="height:1.25px;background:#E3DFD3;"></div>
+<div class="sect" style="padding:45px 55px 50px;">
+  
+<div style="display:flex;flex-wrap:nowrap;align-items:center;gap:17.5px;margin-bottom:25px;">
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;color:#9A7412;min-width:30px;flex-shrink:0;white-space:nowrap;">VI</span>
+  <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:15px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#1C1B17;white-space:nowrap;flex-shrink:0;">Closing Note</span>
+  <div style="flex:1;height:1.25px;background:#E3DFD3;min-width:10px;"></div>
+  
+</div>
+  <div style="border-left:3.75px solid #FCBE11;padding-left:27.5px;">
+    <div style="font-family:'Spectral', Georgia, serif;font-style:italic;font-size:28.75px;font-weight:500;line-height:1.45;color:#221F18;max-width:700px;">True innovation thrives not by avoiding all friction or attempts at control, but by becoming stronger and more adaptable in the face of challenges, including regulatory scrutiny and competitive pressures.</div>
+    <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:14.38px;letter-spacing:0.06em;color:#8B8778;margin-top:20px;">— Antifragility in Innovation</div>
+  </div>
+</div>
+      </div>
+
+      
+<div style="padding:35px 7.5px 10px;">
+  <div style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:11.88px;letter-spacing:0.14em;text-transform:uppercase;color:#A29D8C;margin-bottom:13.75px;">Sources &amp; references consulted</div>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px;">
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;color:#6E6A5E;background:#FBFAF6;border:1.25px solid #DAD5C9;border-radius:3.75px;padding:5px 11.25px;">Economic Times Markets</span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;color:#6E6A5E;background:#FBFAF6;border:1.25px solid #DAD5C9;border-radius:3.75px;padding:5px 11.25px;">Associated Press</span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;color:#6E6A5E;background:#FBFAF6;border:1.25px solid #DAD5C9;border-radius:3.75px;padding:5px 11.25px;">Bloomberg</span>
+<span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.75px;color:#6E6A5E;background:#FBFAF6;border:1.25px solid #DAD5C9;border-radius:3.75px;padding:5px 11.25px;">TechCrunch</span></div>
+  <div style="height:1.25px;background:#D6D1C3;margin-bottom:20px;"></div>
+  <div style="font-size:15px;line-height:1.6;color:#8B8778;max-width:800px;">Prepared automatically for personal informational use only. This document does not constitute investment advice, research within the meaning of applicable regulation, or a solicitation to transact. Figures are indicative, sourced from third parties, and subject to revision.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:7.5px 22.5px;margin-top:17.5px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A6A190;">Generated automatically · AI-curated.</span>
+    <span style="font-family:'IBM Plex Mono', ui-monospace, Menlo, monospace;font-size:13.12px;color:#A6A190;">20 Sep 2026 &middot; 00:45 local</span>
+  </div>
+</div>
+      
+
+    </div>
+  </div>
+</body>
+</html>
