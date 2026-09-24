@@ -16,6 +16,12 @@ name: Prune expired artifacts
 #
 # There is no workflow file behind the Pages build to put a retention on, so
 # the only durable answer is to collect them here.
+#
+# IT CHECKS THAT IT CAN, BEFORE IT CLAIMS TO HAVE. The repository's default
+# token scope is read, and a job that silently cannot delete is exactly how
+# 799 MB accumulated unnoticed. The probe below asks GitHub to delete an
+# artifact id that cannot exist: with the permission that answers 404, and
+# without it, 403. A 403 fails the run and names the setting to change.
 
 on:
   schedule:
@@ -30,27 +36,59 @@ jobs:
   prune:
     runs-on: ubuntu-latest
     steps:
+      - name: Check this job may actually delete
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+          code=$(gh api -X DELETE "repos/$GH_REPO/actions/artifacts/1" \
+                   --silent -i 2>/dev/null | head -1 | awk '{print $2}')
+          code=${code:-000}
+          echo "GitHub answered $code to a delete of an artifact that cannot exist."
+          if [ "$code" = "403" ]; then
+            echo "::error title=No permission to delete artifacts::The token may read but not write Actions, so this job would find expired artifacts and remove none of them. Settings > Actions > General > Workflow permissions, set Read and write."
+            exit 1
+          fi
+          if [ "$code" != "404" ]; then
+            echo "::warning title=Unexpected answer::Expected 404 for a missing artifact, got $code. Pruning anyway; read the counts below."
+          fi
+
       - name: Delete every artifact GitHub has expired but not collected
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
           gh api "repos/$GH_REPO/actions/artifacts?per_page=100" --paginate \
-            -q '.artifacts[] | select(.expired==true) | "\(.id) \(.size_in_bytes)"' > expired.txt || true
-          count=$(wc -l < expired.txt | tr -d ' ')
-          if [ "$count" = "0" ]; then
+            -q '.artifacts[] | select(.expired==true) | "\(.id) \(.size_in_bytes)"' > expired.txt
+          found=$(wc -l < expired.txt | tr -d ' ')
+          if [ "$found" = "0" ]; then
             echo "Nothing expired. Nothing to collect."
             echo "Nothing expired." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          freed=$(awk '{s+=$2} END {printf "%.0f", s/1048576}' expired.txt)
+          gone=0
+          refused=0
           while read -r id _size; do
-            gh api -X DELETE "repos/$GH_REPO/actions/artifacts/$id" >/dev/null 2>&1 || true
+            if gh api -X DELETE "repos/$GH_REPO/actions/artifacts/$id" --silent 2>/dev/null; then
+              gone=$((gone + 1))
+            else
+              refused=$((refused + 1))
+            fi
           done < expired.txt
-          echo "Collected $count expired artifacts, $freed MB."
+          freed=$(awk '{s+=$2} END {printf "%.0f", s/1048576}' expired.txt)
+          echo "Found $found expired, deleted $gone, refused $refused, about $freed MB."
           {
-            echo "### Expired artifacts collected"
+            echo "### Expired artifacts"
             echo
-            echo "$count artifacts, $freed MB. The allowance is 500 MB and is shared by every repository on this account."
+            echo "Found $found, deleted $gone, refused $refused. About $freed MB."
+            echo
+            echo "The allowance is 500 MB and is shared by every repository on this account."
           } >> "$GITHUB_STEP_SUMMARY"
+          # A prune that found work and did none of it is the failure this
+          # file exists to prevent, so it says so rather than passing.
+          if [ "$refused" -gt 0 ]; then
+            echo "::error title=Could not delete $refused artifacts::They still count against the shared 500 MB allowance."
+            exit 1
+          fi
