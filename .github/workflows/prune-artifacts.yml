@@ -1,0 +1,56 @@
+name: Prune expired artifacts
+
+# WHY THIS EXISTS
+#
+# Publishing this site runs GitHub's own `pages-build-deployment`, which
+# uploads the built site as a `github-pages` artifact every time. One
+# briefing a day is one artifact a day, about 30 MB each.
+#
+# They expire after a day, and expiring is not the same as being deleted:
+# GitHub collects them on its own schedule and that schedule fell a month
+# behind. On 24 Sept 2026 this repository was holding 29 expired artifacts,
+# 799 MB of them, against an allowance of 500 MB that is shared by EVERY
+# repository on the account. Nothing anywhere could upload an artifact any
+# more, and the first thing to notice was an unrelated project's data sync
+# going red with "Artifact storage quota has been hit".
+#
+# There is no workflow file behind the Pages build to put a retention on, so
+# the only durable answer is to collect them here.
+
+on:
+  schedule:
+    # 02:00 UTC, after the day's briefing has published.
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete every artifact GitHub has expired but not collected
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GH_REPO/actions/artifacts?per_page=100" --paginate \
+            -q '.artifacts[] | select(.expired==true) | "\(.id) \(.size_in_bytes)"' > expired.txt || true
+          count=$(wc -l < expired.txt | tr -d ' ')
+          if [ "$count" = "0" ]; then
+            echo "Nothing expired. Nothing to collect."
+            echo "Nothing expired." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          freed=$(awk '{s+=$2} END {printf "%.0f", s/1048576}' expired.txt)
+          while read -r id _size; do
+            gh api -X DELETE "repos/$GH_REPO/actions/artifacts/$id" >/dev/null 2>&1 || true
+          done < expired.txt
+          echo "Collected $count expired artifacts, $freed MB."
+          {
+            echo "### Expired artifacts collected"
+            echo
+            echo "$count artifacts, $freed MB. The allowance is 500 MB and is shared by every repository on this account."
+          } >> "$GITHUB_STEP_SUMMARY"
