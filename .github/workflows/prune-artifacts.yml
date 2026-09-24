@@ -40,10 +40,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+        # `set -e` is on by default in a run block, and `gh api` exits
+        # non-zero on any 4xx, so the status has to be captured in a
+        # substitution that cannot fail or the step dies before it can say
+        # what it learned. That is what the first version of this did.
         run: |
-          set -uo pipefail
-          code=$(gh api -X DELETE "repos/$GH_REPO/actions/artifacts/1" \
-                   --silent -i 2>/dev/null | head -1 | awk '{print $2}')
+          out=$(gh api -X DELETE "repos/$GH_REPO/actions/artifacts/1" --include 2>&1 || true)
+          code=$(printf '%s\n' "$out" | grep -m1 -oE 'HTTP/[0-9.]+ [0-9]{3}' | awk '{print $2}' || true)
           code=${code:-000}
           echo "GitHub answered $code to a delete of an artifact that cannot exist."
           if [ "$code" = "403" ]; then
